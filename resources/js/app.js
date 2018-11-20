@@ -1,33 +1,70 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+import Buefy from 'buefy';
 
 window.Vue = require('vue');
+window.VueRouter = require('vue-router').default;
+Vue.use(Buefy,{defaultIconPack: 'fa'}, VueRouter, axios);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import AppLayout from './components/applayout.vue';
+import HomeLayout from './components/layout/homelayout.vue';
+import Register from './components/home/register.vue';
+import LogIn from './components/home/login.vue';
+import Hair from './components/shop/hair.vue';
+import Cosmetic from './components/shop/cosmetic.vue';
+import Body from './components/shop/body.vue';
+import Book from './components/home/book.vue';
+import Feedback from './components/home/feedback.vue';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.config.productionTip = false;
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+const router = new VueRouter({
+    mode: 'history',
+    routes:[
+        {
+            name: 'HomeLayout',
+            path: '/',
+            component: HomeLayout
+        },
+        {
+            name: 'Register',
+            path: '/register',
+            component: Register
+        },
+        {
+            name: 'LogIn',
+            path: '/login',
+            component: LogIn
+        },
+        {
+            name: 'Hair',
+            path: '/hair',
+            component: Hair
+        },
+        {
+            name: 'Cosmetic',
+            path: '/cosmetic',
+            component: Cosmetic
+        },
+        {
+            name: 'Body',
+            path: '/body',
+            component: Body
+        },
+        {
+            name: 'Book',
+            path: '/book',
+            component: Book
+        },
+        {
+            name: 'Feedback',
+            path: '/feedback',
+            component: Feedback
+        }
+    ]
+})
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {AppLayout},
+    router,
 });
