@@ -38,7 +38,9 @@
                         of facial or body hair. 
                     <br>
                     </div>
-                    <button class="button detailButton">View</button>
+                    <router-link :to="{name: 'Book'}">
+                    <button class="button detailButton">Book</button>
+                    </router-link>
                 </div>
                 </div>
             </div>
@@ -64,7 +66,9 @@
                         fingernails and toenails, usually after manicures or pedicures.
                     <br>
                     </div>
-                    <button class="button detailButton">View</button>
+                    <router-link :to="{name: 'Book'}">
+                    <button class="button detailButton">Book</button>
+                    </router-link>
                 </div>
                 </div>
             </div>
@@ -90,7 +94,9 @@
                         and texture of the body.
                     <br>
                     </div>
-                    <button class="button detailButton">View</button>
+                    <router-link :to="{name: 'Book'}">
+                    <button class="button detailButton">Book</button>
+                    </router-link>
                 </div>
                 </div>
             </div>            
@@ -157,24 +163,13 @@
 .subtitle{
     font-size: 12px;
 }
-.cek{
-}
 </style>
 
 <script>
     export default {
         data(){
             return{
-                active: false,
-            }
-        },
-        methods:{
-            activeBurger(){
-                if(this.active == false){
-                    this.active = true;
-                }else{
-                    this.active = false;
-                }
+               
             }
         }
 

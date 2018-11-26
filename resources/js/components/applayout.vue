@@ -9,9 +9,9 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': active}">
+        <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-            <router-link :to="{name:'HomeLayout'}" class="navbar-item" :class="{'is-black': active}">
+            <router-link :to="{name:'HomeLayout'}" class="navbar-item">
                 Home
             </router-link>
 
@@ -19,38 +19,38 @@
                     Services
                 </router-link>  -->
 
-            <router-link :to="{name:'Book'}" class='navbar-item' :class="{'is-black' : active}">
+            <router-link :to="{name:'Book'}" class='navbar-item' v-if="isLoggedIn">
                 Book
             </router-link>
 
-            <router-link :to="{name:'Feedback'}"  class='navbar-item' :class="{'is-black' : active}">
+            <router-link :to="{name:'Feedback'}"  class='navbar-item' v-if="isLoggedIn">
                 Feedback
             </router-link>
 
-            <div class="navbar-item has-dropdown is-hoverable">
+            <div class="navbar-item has-dropdown is-hoverable" v-if="isLoggedIn">
                 <a class="navbar-link">
                 Shop
                 </a>
 
                 <div class="navbar-dropdown">
                 <a class="navbar-item">
-                    <router-link :to="{name:'Cosmetic'}"  class='navbar-item' :class="{'is-black' : active}">
+                    <router-link :to="{name:'Cosmetic'}"  class='navbar-item'>
                         Cosmetic
                      </router-link>
                 </a>
                 <a class="navbar-item">
-                    <router-link :to="{name:'Body'}"  class='navbar-item' :class="{'is-black' : active}">
+                    <router-link :to="{name:'Body'}"  class='navbar-item'>
                         Body Treatment
                      </router-link>
                 </a>
                 <a class="navbar-item">
-                    <router-link :to="{name:'Hair'}"  class='navbar-item' :class="{'is-black' : active}">
+                    <router-link :to="{name:'Hair'}"  class='navbar-item'>
                         Hair Treatment
                     </router-link>
                 </a>
                 </div>
 
-                <router-link :to="{name:''}" class='navbar-item' :class="{'is-black' : active}">
+                <router-link :to="{name:'Contact'}" class='navbar-item' v-if="isLoggedIn">
                   Contact
                 </router-link>
 
@@ -60,17 +60,34 @@
             <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                <a class="button is-link is-outlined">
-                    <router-link :to="{name:'Register'}" class="" :class="{'is-black': active}">
+                <a class="button is-link is-outlined" v-if="!isLoggedIn">
+                    <router-link :to="{name:'Register'}" class="" v-if="!isLoggedIn">
                          <strong>Register</strong>
                     </router-link>
                 </a>
 
-                <a class="button is-info is-outlined">
-                    <router-link :to="{name: 'LogIn'}" class="" :class="{'is-black': active}">
+                <a class="button is-info is-outlined" v-if="!isLoggedIn">
+                    <router-link :to="{name: 'LogIn' }" class="" v-if="!isLoggedIn">
                         <strong>Log in</strong>
                     </router-link>
                 </a>
+
+                
+                <a class="button is-info is-outlined">
+                <span v-if="isLoggedIn">
+                    <router-link :to="{name: 'Profile'}" class="nav-link" v-if="user_type == 0">
+                        <strong>Welcome, {{name}}!</strong>
+                    </router-link>
+                </span>
+                </a>
+
+                <a class="button is-info is-outlined" @click="logout" v-if="isLoggedIn">
+                    <router-link :to="{name:''}" class="" v-if="isLoggedIn">
+                        <strong>Log out</strong>
+                    </router-link>
+                    
+                </a>
+
                 </div>
             </div>
             </div>
@@ -80,10 +97,11 @@
          <div id="appPage">
             <main class="pageContent">
             <transition name="fade">
-                <router-view></router-view>
+                <router-view @loggedIn="change"></router-view>
             </transition>
             </main>
         </div>
+       
    </div>
 </template>
 
@@ -103,16 +121,31 @@
     export default {
         data(){
             return{
-                active: false,
+                name: null,
+                user_type: 0,
+                isLoggedIn: localStorage.getItem('beKing.jwt') != null
             }
         },
+        mounted(){
+            this.setDefaults()    
+        },
         methods:{
-            activeBurger(){
-                if(this.active == false){
-                    this.active = true;
-                }else{
-                    this.active = false;
+            setDefaults(){
+                if(this.isLoggedIn){
+                    let user = JSON.parse(localStorage.getItem('beQueen.user'))
+                    this.name = user.name
+                    this.user_type = user.is_admin
                 }
+            },
+            change(){
+                this.isLoggedIn = localStorage.getItem('beKing.jwt') != null
+                this.setDefaults()
+            },
+            logout(){
+                localStorage.removeItem('beKing.jwt')
+                localStorage.removeItem('beQueen.user')
+                this.change()
+                this.$router.push('/')
             }
         }
 

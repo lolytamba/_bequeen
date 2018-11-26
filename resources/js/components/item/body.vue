@@ -51,6 +51,12 @@
     </div>    
 </template>
 
+<script>
+export default{
+    
+}
+</script>
+
 <style>
 .buyB{
     background: rgb(0, 140, 255);
