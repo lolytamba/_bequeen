@@ -61345,27 +61345,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             email: '',
             name: '',
             phone: '',
-            id: ''
+            id: '',
+            user: {
+                id: '',
+                name: '',
+                phone: '',
+                email: ''
+            }
         };
     },
     mounted: function mounted() {
         this.setDefaults();
+
         this.get();
     },
 
     methods: {
         setDefaults: function setDefaults() {
-            var user = JSON.parse(localStorage.getItem('beQueen.user'));
+            var _this = this;
+
+            var data = JSON.parse(localStorage.getItem('beQueen.user'));
+
+            axios.get('/api/users/detail/' + data.id).then(function (response) {
+                _this.user = response.data;
+                localStorage.setItem('beQueen.user', JSON.stringify(response.data));
+            });
             this.id = user.id;
             this.name = user.name;
             this.phone = user.phone;
             this.email = user.email;
         },
         get: function get() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('api/users/' + this.id).then(function (response) {
-                return _this.user = response.data;
+                return _this2.user = response.data;
             });
         }
     }

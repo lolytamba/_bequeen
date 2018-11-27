@@ -47,15 +47,26 @@ export default {
         name:'',
         phone:'',
         id: '',
+        user: {
+            id: '',
+            name: '',
+            phone: '',
+            email: '',
+        }
     }
   },
   mounted(){
         this.setDefaults()
+         
         this.get()
     },
     methods:{
         setDefaults(){
-        let user = JSON.parse(localStorage.getItem('beQueen.user'))
+        let data = JSON.parse(localStorage.getItem('beQueen.user'))
+
+             axios.get('/api/users/detail/'+data.id).then(response => {
+            this.user = response.data  
+            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
         this.id = user.id
         this.name = user.name
         this.phone = user.phone
