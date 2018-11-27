@@ -1,21 +1,13 @@
 <template>
 <div class="container is-fullhd booking"><br>
     <div class="notification">
-        <div class="title is-8" style="color:green">Booking</div>
-            
+        <div class="title is-8" style="color:green">Book Salon</div>
             <div class="field">
             <label class="label">Name</label>
             <div class="control">
                 <input class="input" id="name" type="string" placeholder="Name" v-model="name" disabled>
             </div>
             </div>
-
-            <!-- <div class="field">
-            <label class="label">Cek baby cek {{name}}</label>
-            <div class="control">
-                <input type="text" id="name"  placeholder="Name" v-model="name">
-            </div>
-            </div> -->
 
             <div class="field">
             <p class="control has-icons-left">
@@ -111,10 +103,14 @@ export default {
                 let data = response.data
                 localStorage.setItem('service',JSON.stringify(data.product))
                 localStorage.setItem('service.jwt', data.name)
-                return alert('Book created');
+                alert('Book created');
             }).catch((err) => {
-                return alert('Book Failed')
+                alert('Book Failed')
             })
+            this.type = null, 
+            this.paket = null,
+            this.arrivalDate = null,
+            this.bookDate = null
         }
     }
 }

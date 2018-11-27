@@ -12,7 +12,10 @@ class Feedback extends Model
     public $table = 'feedbacks';
 
     protected $fillable = [
-        'name','email', 'service','message'
+        'name','email', 'service','message', 'user_id'
     ];
     
+    // public function user(){
+    //     return $this->belongsTo('App\User','user_id');
+    // }
 }

@@ -42,7 +42,6 @@
 
                 </div>
             </form>
-
     </div>
 
     <div class="notification style">
@@ -55,14 +54,12 @@
 export default {
     data(){
         return{
-            
             name: '',
             product: {
                 type: '',
                 paket: '',
                 arrivalDate: '',
                 bookDate: '',
-
             },
             id: '',
         }
@@ -77,8 +74,7 @@ export default {
             this.name = user.name
             this.id = user.id
         },
-        update() {
-            
+        update() { 
             axios.patch('/api/products/update/'+this.$route.params.id,{
                 name  : this.product.name,
                 type : this.product.type,

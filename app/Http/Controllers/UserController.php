@@ -60,6 +60,12 @@ class UserController extends Controller
     {
         return response()->json($user);
     }
+    
+    public function showbyID($id)
+    {
+        $user = User::find($id);
+        return response()->json($user,200);
+    }
 
     public function update(Request $request, $id)
     {   
@@ -74,7 +80,7 @@ class UserController extends Controller
 
         $success = $user->save();
         if(!$success){
-            return response()->json('Error Updating',500);
+            return response()->json('Error Updating Profile',500);
         }else   
             return response()->json('Success',200);
 

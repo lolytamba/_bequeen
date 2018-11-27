@@ -19,6 +19,10 @@ class CreateFeedbacksTable extends Migration
             $table->string('email');
             $table->string('service');
             $table->string('message');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

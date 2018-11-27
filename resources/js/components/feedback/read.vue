@@ -12,7 +12,6 @@
     </thead>
     
     <tbody>
-        <!-- <input class="" id="name" type="string" placeholder="Name" v-model="name" disabled> -->
         <div v-for="(feedback,index) in feedbacks" :key="index">
         <tr>
         <th>{{feedback.name}}</th>
@@ -21,13 +20,13 @@
         <th >{{feedback.message}}</th>
         
         <th>
-        <router-link :to="{name: 'EditFeedback'}">
+        <router-link :to="{name: 'EditFeedback', params: {id: feedback.id}}">
         <button class="button is-warning editB">
             Edit 
         </button>
         </router-link>
 
-        <button class="button is-danger deleteB"  @click ="handleDelete">Delete</button></th>
+        <button class="button is-danger deleteB"  @click ="handleSubmit(feedback.id)">Delete</button></th>
         </tr>  
         </div>     
     </tbody>
@@ -41,22 +40,22 @@ export default {
     data(){
         return{
             feedbacks: [],
-            // name: '',
-            // email:'',
-            // message:'',
-            // service:''
+            email:'',
+            message:'',
+            service:'',
+            id:''
         }
     },
     mounted(){
-        axios.get("api/feedbacks/").then(response => this.feedbacks = response.data)
+        this.get()
     },
     methods:{
-        setDefaults(){
-        }, 
-        handleDelete(e){
-            e.preventDefault()
-            axios.delete("api/deleteFeedback").then(response => this.feedbacks = response.data)
-            return alert('Deleted')
+        get(){
+            axios.get("api/feedbacks/"+this.id).then(response => this.feedbacks = response.data)
+        },
+        handleSubmit(id){
+            axios.delete("/api/feedbacks/deleteFeedback/"+id).then(response => this.this.get())
+            alert('Deleted')
         }   
     }
 }

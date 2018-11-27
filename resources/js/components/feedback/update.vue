@@ -1,7 +1,8 @@
 <template>
 <div class="container is-fullhd booking"><br>
     <div class="notification">
-        <div class="title is-8" style="color:blue">Edit Feedback Belum Jadi HEHEHE</div>
+        <div class="title is-8" style="color:blue">Edit Feedback</div>
+        <form @submit.prevent="update()">
             <div class="field">
             <label class="label">Name</label>
             <div class="control">
@@ -14,34 +15,23 @@
                 <input class="input" type="email" placeholder="Email" v-model="email" disabled>
             </div><br>
 
-            <div class="field">
+            <label class="label">Rate Service</label>
             <div class="control">
-                <label class="radio">
-                <label class="label" >Our Service</label>
-                <input type="radio" name="question" v-model="service" value="Good">
-                Good
-                </label>
-                <label class="radio">
-                <input type="radio" name="question" v-model="service" value="Bad">
-                Bad
-                </label>
-            </div>
-            </div>
+                <input class="input" type="email" placeholder="Rate Service" v-model="feedback.service" disabled>
+            </div><br>
 
             <div class="field">
             <label class="label">Message</label>
             <div class="control">
-                <textarea class="textarea is-success" placeholder="Message" v-model="message"></textarea>
+                <textarea class="textarea is-success" placeholder="Message" v-model="feedback.message"></textarea>
             </div>
             </div>
 
             <br>
             <div class="field">
-                <button class="button feedback" @click="handleSubmit">Send</button>
-                <router-link :to="{name: 'ViewFeedback'}">
-                    <button class="button feedback">View</button>
-                </router-link>
+                <button class="button feedback" type="submit">Send</button>
             </div>
+        </form>
     </div>
 
     <div class="notification style">
@@ -56,12 +46,16 @@ export default {
         return{
             name: '',
             email: '',
-            message: '',
-            service: '',
+            feedback: {
+                message: '',
+                service: ''
+            },
+            id:''
         }
     },
     mounted(){
         this.setDefaults()
+        axios.get('/api/feedbacks/detail/'+this.$route.params.id).then(response => this.feedback = response.data)    
     },
     methods:{
         setDefaults(){
@@ -69,24 +63,17 @@ export default {
             this.name = user.name
             this.email = user.email
         },
-        handleSubmit(e){
-            e.preventDefault()
-            let message = this.message
-            let email = this.email
-            let name = this.name
-            let service = this.service
-            
-            axios.post('api/storeFeedback',{name,email,service,message}).then((response) => {
-                let data = response.data
-                localStorage.setItem('service',JSON.stringify(data.product))
-                localStorage.setItem('service.jwt', data.name)
-               // this.$emit('Booked')
-                return alert('Thanks for your feedback :)');
-                this.$router.push();
-            }).catch((err) => {
-                return alert('Feedback Failed')
+        update() { 
+            axios.patch('/api/feedbacks/update/'+this.$route.params.id,{
+                message  : this.feedback.message
             })
-        }
+            .then(response =>{
+                this.$router.push({name: 'ViewFeedback'})
+            })
+            .catch(response => {
+                alert("error");
+            })
+        },
     }
 }
 </script>

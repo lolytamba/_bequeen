@@ -70,7 +70,6 @@ class ProductController extends Controller
             return response()->json('Error Updating',500);
         }else   
             return response()->json('Success',200);
-
     }
 
     public function destroy($id)

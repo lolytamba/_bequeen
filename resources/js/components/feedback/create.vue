@@ -17,7 +17,7 @@
             <div class="field">
             <div class="control">
                 <label class="radio">
-                <label class="label" >Our Service</label>
+                <label class="label" >Rate Service</label>
                 <input type="radio" name="question" v-model="service" value="Good">
                 Good
                 </label>
@@ -58,6 +58,7 @@ export default {
             email: '',
             message: '',
             service: '',
+            id: ''
         }
     },
     mounted(){
@@ -68,6 +69,7 @@ export default {
             let user = JSON.parse(localStorage.getItem('beQueen.user'))
             this.name = user.name
             this.email = user.email
+            this.id = user.id
         },
         handleSubmit(e){
             e.preventDefault()
@@ -76,7 +78,7 @@ export default {
             let name = this.name
             let service = this.service
             
-            axios.post('api/storeFeedback',{name,email,service,message}).then((response) => {
+            axios.post('api/storeFeedback/'+this.id,{name,email,service,message}).then((response) => {
                 let data = response.data
                 localStorage.setItem('service',JSON.stringify(data.product))
                 localStorage.setItem('service.jwt', data.name)
@@ -85,6 +87,8 @@ export default {
             }).catch((err) => {
                 return alert('Feedback Failed')
             })
+            // this.message = null,
+            // this.service = null
         }
     }
 }

@@ -34,5 +34,6 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 //Profile
 Route::get('/profile', function () {return view('app');});
+Route::get('/update', function () {return view('app');});
 //Item
 //Route::get('/ProductModal', function () {return view('app');});

@@ -13,13 +13,13 @@ import Dashboard from './components/layout/homelayout.vue';
 import Register from './components/home/register.vue';
 import LogIn from './components/home/login.vue';
 import Contact from './components/home/contact.vue';
-//import Modal from './components/book/ProductModal.vue';
 //Item
 import Hair from './components/item/hair.vue';
 import Cosmetic from './components/item/cosmetic.vue';
 import Body from './components/item/body.vue';
 //Profile
 import Profile from './components/profile/profile.vue';
+import updateProfile from './components/profile/update.vue';
 //Book
 import Book from './components/book/create.vue';
 import ListBook from './components/book/read.vue';
@@ -100,6 +100,11 @@ const router = new VueRouter({
             component: Profile
         },
         {
+            name: 'updateProfile',
+            path: '/update',
+            component: updateProfile
+        },
+        {
             name: 'ListBook',
             path: '/listBook',
             component: ListBook
@@ -109,11 +114,6 @@ const router = new VueRouter({
             path: '/edit/:id',
             component: EditBook
         }
-        // {
-        //     name: 'Moodal',
-        //     path: '/ProductModal',
-        //     component: Modal
-        // }
     ]
 })
 

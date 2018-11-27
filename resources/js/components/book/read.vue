@@ -14,7 +14,6 @@
     </thead>
     
     <tbody>
-        <!-- <input class="" id="name" type="string" placeholder="Name" v-model="name" disabled> -->
         <div v-for="(product,index) in products" :key="index">
         <tr>
         <th>{{product.name}}</th>
@@ -59,8 +58,7 @@ export default {
     },
     methods:{
         get(){
-        axios.get('api/products/'+this.id).then(response => this.products = response.data)
-
+            axios.get('api/products/'+this.id).then(response => this.products = response.data)
         },
         setDefaults(){
             let user = JSON.parse(localStorage.getItem('beQueen.user'))

@@ -19,6 +19,10 @@ class CreateItemsTable extends Migration
             $table->string('itemName');
             $table->string('itemType');
             $table->string('price');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
