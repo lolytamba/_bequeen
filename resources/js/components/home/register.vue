@@ -109,7 +109,7 @@ export default {
                     return alert('Register Success')
                 }
             }).catch((err) => {
-                return alert('Register Failed')
+                return alert('Email Sudah Terdaftar')
             })
         }
   }

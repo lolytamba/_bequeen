@@ -60013,7 +60013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return alert('Register Success');
                 }
             }).catch(function (err) {
-                return alert('Register Failed');
+                return alert('Email Sudah Terdaftar');
             });
         }
     }
@@ -65263,7 +65263,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['nextUrl'],
@@ -65448,9 +65447,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("option", [_vm._v("Hair Stylist")]),
                 _vm._v(" "),
-                _c("option", [_vm._v("Nail Art apa")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Makeup apa")])
+                _c("option", [_vm._v("Makeup Artist")])
               ]
             )
           ])

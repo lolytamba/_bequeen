@@ -31,8 +31,7 @@
                 <select name="type" v-model="position">
                     <option selected>--Join Us As--</option>
                     <option>Hair Stylist</option>
-                    <option>Nail Art apa</option>
-                    <option>Makeup apa</option>
+                    <option>Makeup Artist</option>
                 </select>
                 </span>
             </p>
