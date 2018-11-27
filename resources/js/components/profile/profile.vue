@@ -66,11 +66,12 @@ export default {
 
              axios.get('/api/users/detail/'+data.id).then(response => {
             this.user = response.data  
-            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
-        this.id = user.id
-        this.name = user.name
-        this.phone = user.phone
-        this.email = user.email
+            this.id = this.user.id
+            this.name = this.user.name
+            this.phone = this.user.phone
+            this.email = this.user.email
+            })    
+        
     },
     get(){
         axios.get('api/users/'+this.id).then(response => this.user = response.data)

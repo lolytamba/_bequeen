@@ -61368,12 +61368,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/api/users/detail/' + data.id).then(function (response) {
                 _this.user = response.data;
-                localStorage.setItem('beQueen.user', JSON.stringify(response.data));
+                _this.id = _this.user.id;
+                _this.name = _this.user.name;
+                _this.phone = _this.user.phone;
+                _this.email = _this.user.email;
             });
-            this.id = user.id;
-            this.name = user.name;
-            this.phone = user.phone;
-            this.email = user.email;
         },
         get: function get() {
             var _this2 = this;
