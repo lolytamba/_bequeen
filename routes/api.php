@@ -17,7 +17,7 @@ Route::get('/users','UserController@index');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::get('/users/detail/{id}', 'UserController@showbyID');
-Route::patch('users/update/{id}', 'UserController@update'); //ini juga belum mau jalan :(
+Route::patch('users/update/{id}', 'UserController@update'); 
 //Product
 Route::get('/products', 'ProductController@index');
 Route::post('/store/{id}', 'ProductController@store');
@@ -31,13 +31,20 @@ Route::post('/storeFeedback/{id}', 'FeedbackController@storeFeedback');
 Route::patch('feedbacks/update/{id}', 'FeedbackController@update'); 
 Route::get('/feedbacks/detail/{id}', 'FeedbackController@showbyID');
 Route::delete('/feedbacks/deleteFeedback/{id}', 'FeedbackController@destroy'); 
-//Route::get('/feedbacks', 'FeedbackController@show');
 //Item
 Route::get('/items', 'ItemController@index');
-Route::post('storeItem', 'ItemController@store');;
+Route::post('/storeItem/{id}', 'ItemController@store');
+Route::patch('items/update/{id}', 'ItemController@update'); 
+Route::get('/items/detail/{id}', 'ItemController@showbyID');
+Route::delete('/items/delete/{id}', 'ItemController@destroy'); 
+//Job
+Route::get('/jobs', 'JobController@index');
+Route::post('/storeJob', 'JobController@store');
+Route::patch('jobs/update/{id}', 'JobController@update'); 
+Route::get('/jobs/detail/{id}', 'JobController@showbyID');
+Route::delete('/jobs/delete/{id}', 'JobController@destroy'); 
 
 Route::group(['middleware' => 'auth:api'], function(){
-   // Route::get('/users','UserController@index');
     Route::get('/users','UserController@show');
     Route::post('/products','ProductController@index');
     Route::patch('users/{user}','UserController@update');

@@ -15,8 +15,10 @@ import LogIn from './components/home/login.vue';
 import Contact from './components/home/contact.vue';
 //Item
 import Hair from './components/item/hair.vue';
-import Cosmetic from './components/item/cosmetic.vue';
+import Item from './components/item/create.vue';
 import Body from './components/item/body.vue';
+import BuyItem from './components/item/read.vue';
+import EditItem from './components/item/update.vue';
 //Profile
 import Profile from './components/profile/profile.vue';
 import updateProfile from './components/profile/update.vue';
@@ -28,6 +30,10 @@ import EditBook from './components/book/update.vue';
 import Feedback from './components/feedback/create.vue';
 import ViewFeedback from './components/feedback/read.vue';
 import EditFeedback from './components/feedback/update.vue';
+//Job
+import Job from './components/job/create.vue';
+import ViewJob from './components/job/read.vue';
+import UpdateJob from './components/job/update.vue';
 
 Vue.config.productionTip = false;
 
@@ -65,9 +71,9 @@ const router = new VueRouter({
             component: Hair
         },
         {
-            name: 'Cosmetic',
-            path: '/cosmetic',
-            component: Cosmetic
+            name: 'Item',
+            path: '/create',
+            component: Item
         },
         {
             name: 'Body',
@@ -96,12 +102,12 @@ const router = new VueRouter({
         },
         {
             name: 'Profile',
-            path: '/profile',
+            path: '/profile/:id',
             component: Profile
         },
         {
             name: 'updateProfile',
-            path: '/update',
+            path: '/update/:id',
             component: updateProfile
         },
         {
@@ -113,6 +119,31 @@ const router = new VueRouter({
             name: 'EditBook',
             path: '/edit/:id',
             component: EditBook
+        },
+        {
+            name: 'BuyItem',
+            path: '/buy/:index',
+            component: BuyItem
+        },
+        {
+            name: 'EditItem',
+            path: '/editItem/:id',
+            component: EditItem
+        },
+        {
+            name: 'Job',
+            path: '/requirements',
+            component: Job
+        },
+        {
+            name: 'ViewJob',
+            path: '/viewregist',
+            component: ViewJob
+        },
+        {
+            name: 'UpdateJob',
+            path: '/editJob',
+            component: UpdateJob
         }
     ]
 })

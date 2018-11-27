@@ -46,7 +46,6 @@ class FeedbackController extends Controller
             return response()->json('Error Update Feedback',500);
         }else   
             return response()->json('Success',200);
-
     }
 
     public function show($id)

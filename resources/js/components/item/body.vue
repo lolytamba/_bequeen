@@ -6,7 +6,7 @@
             <div class="columns is-mobile">
             <div class="column">
                 <div class="box">
-                    <p style="text-align:center"><strong>Purbasari</strong></p>
+                    <p style="text-align:center" ><strong>Purbasari</strong></p>
                     <figure class="image is-256x256">
                         <img src="../img/body/7.png">
                         <p style="text-align:center"><strong>Rp. 95.000</strong></p>

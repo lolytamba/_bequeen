@@ -15,9 +15,13 @@
                 Home
             </router-link>
 
-                <!-- <router-link :to="{name:'Service'}"  class="navbar-item" :class="{'is-black': active}">
-                    Services
-                </router-link>  -->
+            <router-link :to="{name:'Job'}" class="navbar-item" v-if="!isLoggedIn">
+                !New Job
+            </router-link>
+
+            <router-link :to="{name:'ViewJob'}" class="navbar-item" v-if="!isLoggedIn">
+                !List Requirements
+            </router-link>
 
             <router-link :to="{name:'Book'}" class='navbar-item' v-if="isLoggedIn">
                 Book
@@ -34,7 +38,7 @@
 
                 <div class="navbar-dropdown">
                 <a class="navbar-item">
-                    <router-link :to="{name:'Cosmetic'}"  class='navbar-item'>
+                    <router-link :to="{name:'Item'}"  class='navbar-item'>
                         Cosmetic
                      </router-link>
                 </a>

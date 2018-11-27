@@ -63,30 +63,7 @@ export default {
     },
     get(){
         axios.get('api/users/'+this.id).then(response => this.user = response.data)
-    },
-
-    // handleSubmit(e){
-        // e.preventDefault()
-        // let user_data = JSON.parse(localStorage.getItem('beQueen.user'))
-        // let id = this.id
-        // let name = this.name
-        // let phone = this.phone
-        // let email = this.email
-        // let payload = {
-        //     name: name,
-        //     phone: phone
-        // }
-        // axios.patch(`/api/users/${user_data.id}`, payload).then((response) => {
-        //     let user = JSON.parse(localStorage.getItem('beQueen.user'))
-        //     let name = user.name
-        //     let phone = user.phone
-        //     console.log("Updated")
-        //     this.$forceUpdate()
-        // })
-    // },
-    // beforeMount() {
-    //     axios.get('api/users').then(response => this.users = response.data)
-    // },
+    }
   }
 }
 </script>

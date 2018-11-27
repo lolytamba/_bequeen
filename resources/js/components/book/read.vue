@@ -14,8 +14,7 @@
     </thead>
     
     <tbody>
-        <div v-for="(product,index) in products" :key="index">
-        <tr>
+        <tr v-for="(product,index) in products" :key="index">
         <th>{{product.name}}</th>
         <th>{{product.type}}</th>
         <th >{{product.paket}}</th>
@@ -30,8 +29,7 @@
         </router-link>
 
         <button class="button is-danger deleteB"  @click ="handleSubmit(product.id)">Delete</button></th>
-        </tr>  
-        </div>     
+        </tr>   
     </tbody>
     </table>
 

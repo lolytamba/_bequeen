@@ -23,6 +23,7 @@ class ProductController extends Controller
     public function store(Request $request, $id)
     {
         $product = Product::create([
+            'name' => $request->name,
             'type' => $request->type,
             'paket' => $request->paket,
             'bookDate' => $request->bookDate,
@@ -31,7 +32,6 @@ class ProductController extends Controller
 
         $user = User::find($id);
         $user->product()->attach($product);
-
 
         return response()->json([
             'status' => (bool) $product,

@@ -52,8 +52,10 @@ export default {
     }
   },
   mounted(){
-        axios.get('/api/users/detail/'+this.$route.params.id).then(response => this.user = response.data)    
-        this.setDefaults()
+      this.setDefaults()
+        axios.get('/api/users/detail/'+this.id).then(response => {
+            this.user = response.data  
+            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
     },
     methods:{
         setDefaults(){

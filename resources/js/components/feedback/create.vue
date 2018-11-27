@@ -87,8 +87,8 @@ export default {
             }).catch((err) => {
                 return alert('Feedback Failed')
             })
-            // this.message = null,
-            // this.service = null
+            this.message = null,
+            this.service = null
         }
     }
 }

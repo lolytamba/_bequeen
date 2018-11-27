@@ -8,12 +8,12 @@
         <th>Email</th>
         <th>Service</th>
         <th>Message</th>
+        <th>Action</th>
         </tr>
     </thead>
     
     <tbody>
-        <div v-for="(feedback,index) in feedbacks" :key="index">
-        <tr>
+        <tr v-for="(feedback,index) in feedbacks" :key="index">
         <th>{{feedback.name}}</th>
         <th>{{feedback.email}}</th>
         <th >{{feedback.service}}</th>
@@ -28,7 +28,6 @@
 
         <button class="button is-danger deleteB"  @click ="handleSubmit(feedback.id)">Delete</button></th>
         </tr>  
-        </div>     
     </tbody>
      
     </table>
@@ -54,7 +53,7 @@ export default {
             axios.get("api/feedbacks/"+this.id).then(response => this.feedbacks = response.data)
         },
         handleSubmit(id){
-            axios.delete("/api/feedbacks/deleteFeedback/"+id).then(response => this.this.get())
+            axios.delete("/api/feedbacks/deleteFeedback/"+id).then(response => this.get())
             alert('Deleted')
         }   
     }
