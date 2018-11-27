@@ -47,31 +47,25 @@ export default {
         name:'',
         phone:'',
         id: '',
-        user: {
-            id: '',
-            name: '',
-            phone: '',
-            email: '',
-        }
     }
   },
   mounted(){
         this.setDefaults()
-         
-    
+        this.get()
     },
     methods:{
         setDefaults(){
-        let data = JSON.parse(localStorage.getItem('beQueen.user'))
-
-             axios.get('/api/users/detail/'+data.id).then(response => {
+        let user = JSON.parse(localStorage.getItem('beQueen.user'))
+        this.id = user.id
+        this.name = user.name
+        this.phone = user.phone
+        this.email = user.email
+        axios.get('/api/users/detail/'+this.id).then(response => {
             this.user = response.data  
-            this.id = this.user.id
-            this.name = this.user.name
-            this.phone = this.user.phone
-            this.email = this.user.email
-            })    
-        
+            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
+    },
+    get(){
+        axios.get('api/users/'+this.id).then(response => this.user = response.data)
     }
   }
 }

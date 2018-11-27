@@ -53,9 +53,7 @@ export default {
   },
   mounted(){
       this.setDefaults()
-        axios.get('/api/users/detail/'+this.id).then(response => {
-            this.user = response.data  
-            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
+        
     },
     methods:{
         setDefaults(){
@@ -64,6 +62,9 @@ export default {
         this.name = user.name
         this.phone = user.phone
         this.email = user.email
+        axios.get('/api/users/detail/'+this.id).then(response => {
+            this.user = response.data  
+            localStorage.setItem('beQueen.user', JSON.stringify(response.data))})    
     },
         update(){    
              axios.patch('/api/users/update/'+this.$route.params.id,{

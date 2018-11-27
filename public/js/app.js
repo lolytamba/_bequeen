@@ -61345,31 +61345,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             email: '',
             name: '',
             phone: '',
-            id: '',
-            user: {
-                id: '',
-                name: '',
-                phone: '',
-                email: ''
-            }
+            id: ''
         };
     },
     mounted: function mounted() {
         this.setDefaults();
+        this.get();
     },
 
     methods: {
         setDefaults: function setDefaults() {
             var _this = this;
 
-            var data = JSON.parse(localStorage.getItem('beQueen.user'));
-
-            axios.get('/api/users/detail/' + data.id).then(function (response) {
+            var user = JSON.parse(localStorage.getItem('beQueen.user'));
+            this.id = user.id;
+            this.name = user.name;
+            this.phone = user.phone;
+            this.email = user.email;
+            axios.get('/api/users/detail/' + this.id).then(function (response) {
                 _this.user = response.data;
-                _this.id = _this.user.id;
-                _this.name = _this.user.name;
-                _this.phone = _this.user.phone;
-                _this.email = _this.user.email;
+                localStorage.setItem('beQueen.user', JSON.stringify(response.data));
+            });
+        },
+        get: function get() {
+            var _this2 = this;
+
+            axios.get('api/users/' + this.id).then(function (response) {
+                return _this2.user = response.data;
             });
         }
     }
@@ -61677,22 +61679,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
         this.setDefaults();
-        axios.get('/api/users/detail/' + this.id).then(function (response) {
-            _this.user = response.data;
-            localStorage.setItem('beQueen.user', JSON.stringify(response.data));
-        });
     },
 
     methods: {
         setDefaults: function setDefaults() {
+            var _this = this;
+
             var user = JSON.parse(localStorage.getItem('beQueen.user'));
             this.id = user.id;
             this.name = user.name;
             this.phone = user.phone;
             this.email = user.email;
+            axios.get('/api/users/detail/' + this.id).then(function (response) {
+                _this.user = response.data;
+                localStorage.setItem('beQueen.user', JSON.stringify(response.data));
+            });
         },
         update: function update() {
             var _this2 = this;
