@@ -61356,8 +61356,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.setDefaults();
-
-        this.get();
     },
 
     methods: {
@@ -61372,13 +61370,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.name = _this.user.name;
                 _this.phone = _this.user.phone;
                 _this.email = _this.user.email;
-            });
-        },
-        get: function get() {
-            var _this2 = this;
-
-            axios.get('api/users/' + this.id).then(function (response) {
-                return _this2.user = response.data;
             });
         }
     }

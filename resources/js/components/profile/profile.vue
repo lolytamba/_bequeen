@@ -58,7 +58,7 @@ export default {
   mounted(){
         this.setDefaults()
          
-        this.get()
+    
     },
     methods:{
         setDefaults(){
@@ -72,9 +72,6 @@ export default {
             this.email = this.user.email
             })    
         
-    },
-    get(){
-        axios.get('api/users/'+this.id).then(response => this.user = response.data)
     }
   }
 }
